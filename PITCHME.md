@@ -11,6 +11,7 @@ View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-d
 * Overview
 * What is Docker?
 * Data Produced by Docker
+* Methods of getting Docker data to Splunk
 * Challenges in collecting data from Docker
 
 
@@ -39,10 +40,20 @@ a little more tbd
 * clustered engine logs
 * docker events
 
+--
+## Methods of getting Docker data to Splunk
+
+* log files and forwarder
+* Docker logging driver
+* output to text files and forwarder
+* container to syslog
+
 ---
 
 ## Challenges in collecting data from Docker
 
 * engines can log a lot
 * microservices means many services
+* correlating entries in the many log files
 * there are many events
+* clusters mean there are many more of all of the above
