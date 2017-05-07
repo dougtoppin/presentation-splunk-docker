@@ -10,8 +10,9 @@ View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-d
 
 * Overview
 * What is Docker?
-* What kind of data is produced by Docker?
+* Data Produced by Docker
 * Challenges in collecting data from Docker
+
 
 ---
 
@@ -31,4 +32,17 @@ a little more tbd
 
 ---
 
+## Data produced by Docker
 
+* engine logs
+* container logs
+* clustered engine logs
+* docker events
+
+---
+
+## Challenges in collecting data from Docker
+
+* engines can log a lot
+* microservices means many services
+* there are many events
