@@ -24,6 +24,10 @@ View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-d
 * Distributed applications
 * Many more potential monitoring points
 
++++
+
+![docker system](assets/docker-logging-1.jpg)
+
 ---
 ## Challenges presented by containers and clusters
 
