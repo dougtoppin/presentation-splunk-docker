@@ -1,7 +1,7 @@
 ## Integrating Docker and Splunk
 ##### <span style="font-family:Helvetica Neue; font-weight:bold"><span style="color:#e49436">SplunkersDC Meetup, 31-May-2017</span>
 <span style="color:#e49436">dougtoppin@gmail.com</span>
-<span style="color:#e49436">[https://www.meetup.com/SplunkersDC/](https://www.meetup.com/SplunkersDC/)</span>
+<span style="color:#e49436"><a target="_blank" href="https://www.meetup.com/SplunkersDC/">https://www.meetup.com/SplunkersDC/</a></span>
 
 ---
 
@@ -26,7 +26,7 @@
 
 +++
 
-![docker system](assets/docker-logging-1.jpg)
+![Image](./assets/md/assets/docker-logging-1.jpg)
 
 ---
 ### Challenges presented by containers and clusters
@@ -109,7 +109,7 @@ Log aggregation systems have these questions
 +++
 ### Container environments
 
-*Methods for collecting information from
+Methods for collecting information from
   * Log files
   * Engine
   * Application container
@@ -168,6 +168,20 @@ Log aggregation systems have these questions
 tbd
 
 ---
+### Docker Events
+
+```
+nohup docker events --format '{{json .}}' | jq -c -M 'select(
+        (.Type!="volume" and .Actor.ID!="ucp-metrics-inventory")
+    and (.Type!="volume" and .Actor.ID!="ucp-controller-client-certs")
+    and (.Status!="archive-path" and .Action!="archive-path")
+    and (select([.status] | contains(["curl"]) | not))
+    and (select([.status] | contains(["ping"]) | not))
+    and (select([.status] | contains(["health"]) | not))
+)
+' > splunk-events.json 2>&1 &
+```
+---
 ### Lessons Learned
 
 * Identifying and filtering out what is not needed is useful at the start, risk of eventual license exhaustion and cost increases later if you do not
@@ -175,5 +189,3 @@ tbd
 * Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message
 * Useful to be able to query for what’s being logged that wasn’t before
 * Filtering out what you do not need might be easier than filtering in what you want (so that you do not miss anything new)
-
-
