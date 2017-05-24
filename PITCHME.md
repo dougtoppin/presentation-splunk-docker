@@ -88,48 +88,51 @@ Log aggregation systems have these questions
 ### Log aggregation systems
 
 * Open source, likely consisting of multiple components
-** ELK
-** EFK
+ * ELK
+ * EFK
 * Proprietary
-** Loggly
-** Sumo Logic
-** AWS CloudWatch
-** Google Stackdriver
-** Splunk
+ * Loggly
+ * Sumo Logic
+ * AWS CloudWatch
+ * Google Stackdriver
+ * Splunk
 * In-house developed
 
 ---
 ### Container environments
 
 * Providers
-** Docker
-** Red Hat Openshift
-** Kubernetes
-** AWS ECS
+ * Docker
+ * Red Hat Openshift
+ * Kubernetes
+ * AWS ECS
 +++
 ### Container environments
 
 *Methods for collecting information from
-** Log files
-** Engine
-** Application container
-** API
+  * Log files
+  * Engine
+  * Application container
+  * API
 
 ---
 ### Container environments
 * What might be of interest to collect?
-** Infrastructure
-** Engine logs
-** Engine events
-** Who is doing what?
-** Cluster management logs
-** Is anything wrong?
-** Registry and repository information
-** Images and versions pushed
-** Authentication failures
-** Image vulnerability scanning results
-** Content trust (image signing) failures
-** Application container logs
+  * Infrastructure
+  * Engine logs
+  * Engine events
+  * Who is doing what?
+  * Cluster management logs
+  * Is anything wrong?
++++
+### Container environments
+* What might be of interest to collect?
+  * Registry and repository information
+  * Images and versions pushed
+  * Authentication failures
+  * Image vulnerability scanning results
+  * Content trust (image signing) failures
+  * Application container logs
 
 ---
 ### Approaches for managing log and related data
