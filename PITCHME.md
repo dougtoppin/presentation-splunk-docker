@@ -3,7 +3,6 @@
 <span style="color:#e49436">dougtoppin@gmail.com</span>
 <span style="color:#e49436">[https://www.meetup.com/SplunkersDC/](https://www.meetup.com/SplunkersDC/)</span>
 
-View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-docker)
 ---
 
 ## Agenda
@@ -14,9 +13,10 @@ View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-d
 * Approaches for managing log and related data
 * Container environments
 * Architectures for managing log and related data
+* Lessons learned
 
 ---
-## The world of containers
+### The world of containers
 
 * Evolution from VMs
 * Microservices
@@ -29,7 +29,7 @@ View this using [GitPitch](https://gitpitch.com/dougtoppin/presentation-splunk-d
 ![docker system](assets/docker-logging-1.jpg)
 
 ---
-## Challenges presented by containers and clusters
+### Challenges presented by containers and clusters
 
 * Potentially ephemeral but maybe not
 * Should containers and cluster nodes register with the aggregation system or simply come and go?
@@ -46,14 +46,14 @@ Challenges presented by containers and clusters
 * Another UI/management/monitoring system for ops to learn
 
 ---
-## Log aggregation systems
+### Log aggregation systems
 
 What are log aggregation systems?
 
 Tbd
 
 ---
-## Log aggregation systems
+### Log aggregation systems
 
 Log aggregation systems have these questions
 * Who sent this?
@@ -67,7 +67,7 @@ Log aggregation systems have these questions
 * Should I notify someone because of this?
 
 ---
-## Log aggregation systems
+### Log aggregation systems
 * What they are and do
 * Receive and index data that may or may not be structured
 * Support push and pull models for collecting data
@@ -79,62 +79,60 @@ Log aggregation systems have these questions
 * Support notification rules
 
 ---
-## Log aggregation systems
+### Log aggregation systems
 * Why they are necessary
 * Central place to access data as opposed to many individual servers
 * Provide historical records of what happened to compare with (have we seen this before?, is this what happened last time?)
 
 ---
-## Log aggregation systems
+### Log aggregation systems
 
-Open source, likely consisting of multiple pieces
-* ELK
-* EFK
-
-Proprietary
-* Loggly
-* Sumo Logic
-* AWS CloudWatch
-* Google Stackdriver
-* Splunk
-
-In-house developed
+* Open source, likely consisting of multiple components
+** ELK
+** EFK
+* Proprietary
+** Loggly
+** Sumo Logic
+** AWS CloudWatch
+** Google Stackdriver
+** Splunk
+* In-house developed
 
 ---
-## Container environments
+### Container environments
 
-Providers
+* Providers
+** Docker
+** Red Hat Openshift
+** Kubernetes
+** AWS ECS
++++
+### Container environments
 
-* Docker
-* Red Hat Openshift
-* Kubernetes
-* AWS ECS
-
-Methods for collecting information from
-
-* Log files
-* Engine
-* Application container
-* API
-
----
-## Container environments
-What might be of interest to collect?
-* Infrastructure
-* Engine logs
-* Engine events
-* Who is doing what?
-* Cluster management logs
-* Is anything wrong?
-* Registry and repository information
-* Images and versions pushed
-* Authentication failures
-* Image vulnerability scanning results
-* Content trust (image signing) failures
-* Application container logs
+*Methods for collecting information from
+** Log files
+** Engine
+** Application container
+** API
 
 ---
-## Approaches for managing log and related data
+### Container environments
+* What might be of interest to collect?
+** Infrastructure
+** Engine logs
+** Engine events
+** Who is doing what?
+** Cluster management logs
+** Is anything wrong?
+** Registry and repository information
+** Images and versions pushed
+** Authentication failures
+** Image vulnerability scanning results
+** Content trust (image signing) failures
+** Application container logs
+
+---
+### Approaches for managing log and related data
 
 * Integrating with an existing log aggregation system (probably not greenfield)
 * Logging gateways (Fluentd) are useful for filtering data before sending to ingestion
@@ -145,8 +143,8 @@ What might be of interest to collect?
 * Log aggregation needs to be available for all phases of software dev/test/prod
 * Need for dashboards prepared in advance by developers
 
----
-## Approaches for managing log and related data
++++
+### Approaches for managing log and related data
 
 * Risky to be implemented as a part of the system such as being containers in the cluster because the cluster or components may fail causing the logging system to fail (ala S3 status icons)
 * Having them standalone may be the safest but involves more cost
@@ -154,20 +152,20 @@ What might be of interest to collect?
 * Aggregation system ingestion points can help classify and group incoming data
 * Queueing system (SQS?) for sending entries to to avoid blocking senders?
 
----
-## Approaches for managing log and related data
++++
+### Approaches for managing log and related data
 
 * Forwarding to log aggregator might break local log output such as in OpenShift HAProxy syslog port, adding sidecar support might alleviate this
 * Enriching container log data at the engine level using tags (https://docs.docker.com/engine/admin/logging/log_tags/) can be very helpful to the aggregation system
 * Note that using a logging driver might prevent using ‘docker logs container’ from working
 
 ---
-## Architectures for managing log and related data
+### Architectures for managing log and related data
 
 tbd
 
 ---
-## Lessons Learned
+### Lessons Learned
 
 * Identifying and filtering out what is not needed is useful at the start, risk of eventual license exhaustion and cost increases later if you do not
 * How will long term data storage be managed
