@@ -26,7 +26,7 @@
 
 +++
 
-![Image](./assets/md/assets/docker-logging-1.jpg)
+![Image](assets/docker-logging-1.jpg)
 
 ---
 ### Challenges presented by containers and clusters
