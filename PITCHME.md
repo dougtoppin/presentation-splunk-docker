@@ -58,7 +58,7 @@ What are log aggregation systems?
 
 Tbd
 
----
++++
 ### Log aggregation systems
 
 Log aggregation systems have these questions
@@ -72,7 +72,7 @@ Log aggregation systems have these questions
 * How long should I keep it?
 * Should I notify someone because of this?
 
----
++++
 ### Log aggregation systems
 * What they are and do
 * Receive and index data that may or may not be structured
@@ -84,13 +84,13 @@ Log aggregation systems have these questions
 * Data management must be secure due to the potential nature of log entry content
 * Support notification rules
 
----
++++
 ### Log aggregation systems
 * Why they are necessary
 * Central place to access data as opposed to many individual servers
 * Provide historical records of what happened to compare with (have we seen this before?, is this what happened last time?)
 
----
++++
 ### Log aggregation systems
 
 * Open source, likely consisting of multiple components
@@ -121,7 +121,7 @@ Methods for collecting information from
   * Application container
   * API
 
----
++++
 ### Container environments
 * What might be of interest to collect?
   * Infrastructure
