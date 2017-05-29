@@ -25,31 +25,38 @@
 * Many more potential monitoring points
 
 +++
-![Image](assets/docker-logging-nonclustered-bare.jpg)
+![Image](./assets/md/assets/docker-logging-nonclustered-bare.jpg)
 +++
-![Image](assets/docker-logging-nonclustered-connections.jpg)
+![Image](./assets/md/assets/docker-logging-nonclustered-connections.jpg)
 +++
-![Image](assets/docker-logging-clustered-bare.jpg)
+![Image](./assets/md/assets/docker-logging-clustered-bare.jpg)
 +++
-![Image](assets/docker-logging-clustered-connections.jpg)
+![Image](./assets/md/assets/docker-logging-clustered-connections.jpg)
 +++
-![Image](assets/docker-logging-1.jpg)
+![Image](./assets/md/assets/docker-logging-1.jpg)
 ---
 ### Challenges presented by containers and clusters
 
+* scaling of containers
+* scaling of nodes
 * Potentially ephemeral but maybe not
 * Should containers and cluster nodes register with the aggregation system or simply come and go?
 * Small applications comprising a service all over the place
 * Request tracking of the entire chain may be difficult
+
++++
+### Challenges presented by containers and clusters
+
 * Management and orchestration also very distributed
 * Superfluous log data
 * How much of the container and clustering environment engines do you also monitor?
 * How does the log aggregator identify who is sending the logging and associate related services?
 
-Challenges presented by containers and clusters
-
++++
+### Challenges presented by containers and clusters
 * Likely many more sockets/connections consuming system resources
 * Another UI/management/monitoring system for ops to learn
+* Container environments and orchestration systems are evolving, how closely do you need to monitor them?
 
 ---
 ### Log aggregation systems
