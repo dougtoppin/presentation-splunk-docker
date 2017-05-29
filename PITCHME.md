@@ -57,6 +57,7 @@
 * Likely many more sockets/connections consuming system resources
 * Another UI/management/monitoring system for ops to learn
 * Container environments and orchestration systems are evolving, how closely do you need to monitor them?
+* Administrator (people with access really) behavior such as exec'ing a shell into a container with secrets
 
 ---
 ### Log aggregation systems
@@ -114,10 +115,10 @@ Log aggregation systems have these questions
 ---
 ### Container environments
 
-* Providers
- * Docker
- * Red Hat Openshift
- * Kubernetes
+* Providers include
+ * Docker (swarm/ucp)
+ * Red Hat Openshift (Kubernetes++)
+ * Google Cloud (Kubernetes)
  * AWS ECS
 +++
 ### Container environments
@@ -201,4 +202,8 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 * How will long term data storage be managed
 * Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message
 * Useful to be able to query for what’s being logged that wasn’t before
++++
+### Lessons Learned
+
 * Filtering out what you do not need might be easier than filtering in what you want (so that you do not miss anything new)
+* useful to filter out what you don't want rather than filter in because you might miss events
