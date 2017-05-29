@@ -155,6 +155,10 @@ Methods for collecting information from
 * Logging gateways (Fluentd) are useful for filtering data before sending to ingestion
 * syslog/rsyslog (from containers and hardware) and log files all contribute to log data
 * Cost of aggregation systems (capacity, storage, long term data maintenance)
+
++++
+### Approaches for managing log and related data
+
 * Intelligent log aggregation systems that can support analytics are useful for providing more than just awareness
 * Developers need to be cognizant of the value of logging
 * Log aggregation needs to be available for all phases of software dev/test/prod
@@ -166,24 +170,44 @@ Methods for collecting information from
 * Risky to be implemented as a part of the system such as being containers in the cluster because the cluster or components may fail causing the logging system to fail (ala S3 status icons)
 * Having them standalone may be the safest but involves more cost
 * Including tags/labels indicating service on containers can help the aggregation system classify what is received
+
++++
+### Approaches for managing log and related data
+
 * Aggregation system ingestion points can help classify and group incoming data
 * Queueing system (SQS?) for sending entries to to avoid blocking senders?
 
 +++
 ### Approaches for managing log and related data
 
-* Forwarding to log aggregator might break local log output such as in OpenShift HAProxy syslog port, adding sidecar support might alleviate this
+* Forwarding to log aggregator might break local log output such as in OpenShift HAProxy syslog port, adding sidecar support for an rsyslog handler might alleviate this
 * Enriching container log data at the engine level using tags (https://docs.docker.com/engine/admin/logging/log_tags/) can be very helpful to the aggregation system
 * Note that using a logging driver might prevent using ‘docker logs container’ from working
 
 ---
 ### Architectures for managing log and related data
 
-tbd
+tbd image showing including a logging gateway
 
 ---
 ### Docker Events
 
+Describe the lifecycle of the following
+
+* containers: attach commit copy create destroy detach die exec_create exec_detach exec_start export health_status kill oom pause rename resize restart start stop top unpause update
+* images: delete import load pull push save tag untag
+
++++
+### Docker Events
+
+* plugins: install enable disable remove
+* volumes: create mount unmount destroy
+* networks: create connect disconnect destroy
+* daemon: reload
+
++++
+### Docker Events
+Method for filtering out uninteresting events
 ```
 nohup docker events --format '{{json .}}' | jq -c -M 'select(
         (.Type!="volume" and .Actor.ID!="ucp-metrics-inventory")
@@ -202,8 +226,10 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 * How will long term data storage be managed
 * Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message
 * Useful to be able to query for what’s being logged that wasn’t before
+
 +++
 ### Lessons Learned
 
-* Filtering out what you do not need might be easier than filtering in what you want (so that you do not miss anything new)
-* useful to filter out what you don't want rather than filter in because you might miss events
+* Filtering out what you do not need might be better than filtering in what you want (so that you do not miss anything new)
+* useful to filter out what you don't want rather than filter in because you might miss events that prove useful
+
