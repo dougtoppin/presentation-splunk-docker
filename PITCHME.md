@@ -34,6 +34,8 @@
 ![Image](assets/docker-logging-clustered-connections.jpg)
 +++
 ![Image](assets/docker-logging-1.jpg)
++++
+![Image](assets/docker-logging-gateway-1.jpg)
 ---
 ### Challenges presented by containers and clusters
 
@@ -232,4 +234,3 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 
 * Filtering out what you do not need might be better than filtering in what you want (so that you do not miss anything new)
 * useful to filter out what you don't want rather than filter in because you might miss events that prove useful
-
