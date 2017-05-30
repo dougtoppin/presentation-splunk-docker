@@ -25,15 +25,15 @@
 * Many more potential monitoring points
 
 +++
-![Image](./assets/md/assets/docker-logging-nonclustered-bare.jpg)
+![Image](assets/docker-logging-nonclustered-bare.jpg)
 +++
-![Image](./assets/md/assets/docker-logging-nonclustered-connections.jpg)
+![Image](assets/docker-logging-nonclustered-connections.jpg)
 +++
-![Image](./assets/md/assets/docker-logging-clustered-bare.jpg)
+![Image](assets/docker-logging-clustered-bare.jpg)
 +++
-![Image](./assets/md/assets/docker-logging-clustered-connections.jpg)
+![Image](assets/docker-logging-clustered-connections.jpg)
 +++
-![Image](./assets/md/assets/docker-logging-1.jpg)
+![Image](assets/docker-logging-1.jpg)
 ---
 ### Challenges presented by containers and clusters
 
