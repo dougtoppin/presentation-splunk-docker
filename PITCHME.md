@@ -288,5 +288,9 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 * Filtering out what you do not need might be better than filtering in what you want (so that you do not miss anything new)
 * Useful to filter out what you don't want rather than filter in because you might miss events that prove useful
 * Occasional warnings (such as failed health checks might be normal)
+
++++
+### Lessons Learned
+
 * Image does not exist error may look the same as you do not have pull access
 * Odd messages may get your attention "dockerd[20700]: level=warning msg="found leaked image layer sha256:98c944e98de8d35..."
