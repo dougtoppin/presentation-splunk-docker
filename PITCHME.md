@@ -189,12 +189,15 @@ Methods for collecting information from
 ---
 ### Architectures for managing log and related data
 
-tbd image showing including a logging gateway
+Logging gateway per node can reduce paths to aggregator
+
+![Image](assets/docker-logging-gateway-1.jpg)
 
 ---
 ### Docker Events
 
-Describe the lifecycle of the following
+Events list the lifecycle of the following resources.
+They can provide great insight on exactly what is happening.
 
 * containers: attach commit copy create destroy detach die exec_create exec_detach exec_start export health_status kill oom pause rename resize restart start stop top unpause update
 * images: delete import load pull push save tag untag
