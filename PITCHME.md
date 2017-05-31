@@ -1,7 +1,7 @@
 ## Integrating Docker and Splunk
 ##### <span style="font-family:Helvetica Neue; font-weight:bold"><span style="color:#e49436">SplunkersDC Meetup, 31-May-2017</span>
 <span style="color:#e49436">dougtoppin@gmail.com</span>
-<span style="color:#e49436"><a target="_blank" href="https://www.meetup.com/SplunkersDC/">https://www.meetup.com/SplunkersDC/</a></span>
+<span style="color:#e49436"><a target="_blank" href="https://www.meetup.com/SplunkersDC/">www.meetup.com/SplunkersDC/</a></span>
 <span style="color:#e49436"><a target="_blank"  href="https://github.com/dougtoppin/presentation-splunk-docker">github.com/dougtoppin/presentation-splunk-docker</a></span>
 
 ---
@@ -11,15 +11,16 @@
 * The world of containers
 * Challenges presented by containers
 * Log aggregation systems
-* Approaches for managing log and related data
+* Approaches for managing log data
 * Container environments
-* Architectures for managing log and related data
+* Architectures for managing log data
 * Lessons learned
 
 ---
 ### The world of containers
 
 * Evolution from VMs
+* Various approaches and vendors
 * Microservices
 * Clusters
 * Distributed applications
@@ -27,50 +28,51 @@
 
 
 ---
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 
-* scaling of containers
-* scaling of nodes
+* Scaling of containers
+* Scaling of nodes
 * Potentially ephemeral but maybe not
 * Should containers and cluster nodes register with the aggregation system or simply come and go?
 * Small applications comprising a service all over the place
 * Request tracking of the entire chain may be difficult
 
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 
 * Management and orchestration also very distributed
 * Superfluous log data
-* How much of the container and clustering environment engines do you also monitor?
+* Container systems evolving
+* How much of the container and clustering environment/engines do you also monitor?
 * How does the log aggregator identify who is sending the logging and associate related services?
 
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 * Likely many more sockets/connections consuming system resources
 * Another UI/management/monitoring system for ops to learn
 * Container environments and orchestration systems are evolving, how closely do you need to monitor them?
 * Administrator (people with access really) behavior such as exec'ing a shell into a container with secrets
 
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 
 Basic components of a container system
 ![Image](assets/docker-logging-nonclustered-bare.jpg)
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 What talks to what
 ![Image](assets/docker-logging-nonclustered-connections.jpg)
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 Clusters complicate things
 ![Image](assets/docker-logging-clustered-bare.jpg)
 +++
-### Challenges presented by containers and clusters
+### Challenges presented by containers
 Numerous connections and points of interest
 ![Image](assets/docker-logging-clustered-connections.jpg)
 +++
-### Challenges presented by containers and clusters
-Containers and the individual level and clustered
+### Challenges presented by containers
+Everything combined
 ![Image](assets/docker-logging-1.jpg)
 
 ---
@@ -126,8 +128,8 @@ Log aggregation systems have these questions
  * ELK
  * EFK
 
- +++
- ### Log aggregation systems
++++
+### Log aggregation systems
 
 * Proprietary
  * Loggly
@@ -174,7 +176,7 @@ Methods for collecting information from
   * Application container logs
 
 ---
-### Approaches for managing log and related data
+### Approaches for managing log data
 
 * Integrating with an existing log aggregation system (probably not greenfield)
 * Logging gateways (Fluentd) are useful for filtering data before sending to ingestion
@@ -182,7 +184,7 @@ Methods for collecting information from
 * Cost of aggregation systems (capacity, storage, long term data maintenance)
 
 +++
-### Approaches for managing log and related data
+### Approaches for managing log data
 
 * Intelligent log aggregation systems that can support analytics are useful for providing more than just awareness
 * Developers need to be cognizant of the value of logging
@@ -190,27 +192,27 @@ Methods for collecting information from
 * Need for dashboards prepared in advance by developers
 
 +++
-### Approaches for managing log and related data
+### Approaches for managing log data
 
-* Risky to be implemented as a part of the system such as being containers in the cluster because the cluster or components may fail causing the logging system to fail (ala S3 status icons)
+* Risky to be implemented as a part of the system such as being containers in the cluster because the cluster or components may fail causing the logging system to fail
 * Having them standalone may be the safest but involves more cost
 * Including tags/labels indicating service on containers can help the aggregation system classify what is received
 
 +++
-### Approaches for managing log and related data
+### Approaches for managing log data
 
 * Aggregation system ingestion points can help classify and group incoming data
-* Queueing system (SQS?) for sending entries to to avoid blocking senders?
+* Queueing system for sending entries to avoid blocking senders
 
 +++
-### Approaches for managing log and related data
+### Approaches for managing log and data
 
 * Forwarding to log aggregator might break local log output such as in OpenShift HAProxy syslog port, adding sidecar support for an rsyslog handler might alleviate this
 * Enriching container log data at the engine level using tags (https://docs.docker.com/engine/admin/logging/log_tags/) can be very helpful to the aggregation system
 * Note that using a logging driver might prevent using ‘docker logs container’ from working
 
 ---
-### Architectures for managing log and related data
+### Architectures for managing log data
 
 Logging gateway per node can reduce paths to aggregator
 
