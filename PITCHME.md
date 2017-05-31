@@ -21,7 +21,7 @@
 
 * Evolution from VMs
 * Various approaches and vendors
-* Microservices
+* Micro services
 * Clusters
 * Distributed applications
 * Many more potential monitoring points
@@ -43,7 +43,7 @@
 * Management and orchestration also very distributed
 * Superfluous log data
 * How much of the container and clustering environment/engines do you also monitor?
-* How does the log aggregator identify who is sending the logging and associate related services?
+* How does the log aggregator identify who is sending the logging and related services?
 
 +++
 ### Challenges presented by containers
@@ -107,7 +107,7 @@ Log aggregation systems have these questions
 +++
 ### Log aggregation systems
 * UI should be relatively easy to use
-* Should have a dashboarding capability where canned queries produce understandable information
+* Should have a dashboard capability where canned queries produce understandable information
 * Data management must be secure due to the potential nature of log entry content
 * Support notification rules
 
@@ -279,7 +279,7 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 
 * Identifying and filtering out what is not needed is useful at the start, risk of eventual license exhaustion and cost increases later if you do not
 * How will long term data storage be managed
-* Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message, this is complicated by a microservices environment
+* Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message, this is complicated by a micro services environment
 * Useful to be able to query for what’s being logged that wasn’t before
 
 +++
@@ -287,3 +287,6 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 
 * Filtering out what you do not need might be better than filtering in what you want (so that you do not miss anything new)
 * Useful to filter out what you don't want rather than filter in because you might miss events that prove useful
+* Occasional warnings (such as failed health checks might be normal)
+* Image does not exist error may look the same as you do not have pull access
+* Odd messages may get your attention "dockerd[20700]: level=warning msg="found leaked image layer sha256:98c944e98de8d35..."
