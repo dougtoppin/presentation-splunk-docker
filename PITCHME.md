@@ -64,10 +64,6 @@ Basic components of a container system
 Clusters complicate things
 ![Image](assets/docker-logging-clustered-bare.jpg)
 
-+++
-### Challenges presented by containers
-Everything combined
-![Image](assets/docker-logging-1.jpg)
 
 ---
 ### Log aggregation systems
@@ -146,9 +142,12 @@ Log aggregation systems have these questions
 
 Methods for collecting information from
   * Log files
+  * rsyslog
   * Engine
   * Application container
-  * API
+  * API (particularly for non-logged things)
+<a target="_blank"  href="  https://docs.docker.com/engine/api/v1.29/#operation/TaskLogs">docs.docker.com/engine/api/v1.29/#operation/TaskLogs</a>
+
 
 +++
 ### Container environments
@@ -221,8 +220,14 @@ Clustered means numerous connections
 
 +++
 ### Architectures for managing logs
+Everything combined
+![Image](assets/docker-logging-1.jpg)
 
-Logging gateway per node can reduce paths to aggregator
+
++++
+### Architectures for managing logs
+
+Logging gateway per node can reduce paths to aggregator but how is Fluentd configured dynamically?
 
 ![Image](assets/docker-logging-gateway-1.jpg)
 
@@ -272,4 +277,4 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 ### Lessons Learned
 
 * Filtering out what you do not need might be better than filtering in what you want (so that you do not miss anything new)
-* useful to filter out what you don't want rather than filter in because you might miss events that prove useful
+* Useful to filter out what you don't want rather than filter in because you might miss events that prove useful
