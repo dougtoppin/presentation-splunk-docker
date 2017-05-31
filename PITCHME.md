@@ -42,7 +42,6 @@
 
 * Management and orchestration also very distributed
 * Superfluous log data
-* Container systems evolving
 * How much of the container and clustering environment/engines do you also monitor?
 * How does the log aggregator identify who is sending the logging and associate related services?
 
@@ -52,6 +51,13 @@
 * Another UI/management/monitoring system for ops to learn
 * Container environments and orchestration systems are evolving, how closely do you need to monitor them?
 * Administrator (people with access really) behavior such as exec'ing a shell into a container with secrets
+
++++
+### Challenges presented by containers
+
+* Container systems are rapidly evolving with variations on approaches
+* A lot of orchestration is going on to pull images, create containers, configure networking and launch containers (see `docker events`)
+
 
 +++
 ### Challenges presented by containers
