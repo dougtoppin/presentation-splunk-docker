@@ -2,6 +2,7 @@
 ##### <span style="font-family:Helvetica Neue; font-weight:bold"><span style="color:#e49436">SplunkersDC Meetup, 31-May-2017</span>
 <span style="color:#e49436">dougtoppin@gmail.com</span>
 <span style="color:#e49436"><a target="_blank" href="https://www.meetup.com/SplunkersDC/">https://www.meetup.com/SplunkersDC/</a></span>
+<span style="color:#e49436"><a target="_blank"  href="https://github.com/dougtoppin/presentation-splunk-docker">github.com/dougtoppin/presentation-splunk-docker</a></span>
 
 ---
 
@@ -24,18 +25,7 @@
 * Distributed applications
 * Many more potential monitoring points
 
-+++
-![Image](assets/docker-logging-nonclustered-bare.jpg)
-+++
-![Image](assets/docker-logging-nonclustered-connections.jpg)
-+++
-![Image](assets/docker-logging-clustered-bare.jpg)
-+++
-![Image](assets/docker-logging-clustered-connections.jpg)
-+++
-![Image](assets/docker-logging-1.jpg)
-+++
-![Image](assets/docker-logging-gateway-1.jpg)
+
 ---
 ### Challenges presented by containers and clusters
 
@@ -61,12 +51,35 @@
 * Container environments and orchestration systems are evolving, how closely do you need to monitor them?
 * Administrator (people with access really) behavior such as exec'ing a shell into a container with secrets
 
++++
+### Challenges presented by containers and clusters
+
+Basic components of a container system
+![Image](assets/docker-logging-nonclustered-bare.jpg)
++++
+### Challenges presented by containers and clusters
+What talks to what
+![Image](assets/docker-logging-nonclustered-connections.jpg)
++++
+### Challenges presented by containers and clusters
+Clusters complicate things
+![Image](assets/docker-logging-clustered-bare.jpg)
++++
+### Challenges presented by containers and clusters
+Numerous connections and points of interest
+![Image](assets/docker-logging-clustered-connections.jpg)
++++
+### Challenges presented by containers and clusters
+Containers and the individual level and clustered
+![Image](assets/docker-logging-1.jpg)
+
 ---
 ### Log aggregation systems
 
 What are log aggregation systems?
 
-Tbd
+Centralized point to send and access logs from a system of various components.
+May also include automatic analytics capabilities.
 
 +++
 ### Log aggregation systems
@@ -77,6 +90,10 @@ Log aggregation systems have these questions
 * What is it?
 * What format is it in?
 * What is in it?
++++
+### Log aggregation systems
+
+Log aggregation systems have these questions
 * Should it be grouped with other stuff?
 * Do I care about it?
 * How long should I keep it?
@@ -89,6 +106,8 @@ Log aggregation systems have these questions
 * Support push and pull models for collecting data
 * Used for troubleshooting, general awareness and may support business analytics
 * Have to interpret and present various types of information
++++
+### Log aggregation systems
 * UI should be relatively easy to use
 * Should have a dashboarding capability where canned queries produce understandable information
 * Data management must be secure due to the potential nature of log entry content
@@ -106,6 +125,10 @@ Log aggregation systems have these questions
 * Open source, likely consisting of multiple components
  * ELK
  * EFK
+
+ +++
+ ### Log aggregation systems
+
 * Proprietary
  * Loggly
  * Sumo Logic
