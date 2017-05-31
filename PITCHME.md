@@ -153,7 +153,7 @@ Methods for collecting information from
 ### Container environments
 * What might be of interest to collect?
   * Infrastructure
-  * Engine logs
+  * Engine logs (and varying log levels)
   * Engine events
   * Who is doing what?
   * Cluster management logs
@@ -163,8 +163,8 @@ Methods for collecting information from
 * What might be of interest to collect?
   * Registry and repository information
   * Images and versions pushed
-  * Authentication failures
-  * Image vulnerability scanning results
+  * Registry authentication failures
+  * Image vulnerability scanning results (and alert on)
   * Content trust (image signing) failures
   * Application container logs
 
@@ -234,11 +234,14 @@ Logging gateway per node can reduce paths to aggregator but how is Fluentd confi
 ---
 ### Docker Events
 
-Events list the lifecycle of the following resources.
+Events list the lifecycle of many resources.
 They can provide great insight on exactly what is happening.
 
-<a target="_blank"  href="https://docs.docker.com/engine/reference/commandline/events/">docs.docker.com/engine/reference/commandline/events/</a>
-<a target="_blank"  href="https://gliderlabs.com/devlog/2015/docker-events-explained/">gliderlabs.com/devlog/2015/docker-events-explained/</a>
+* <a target="_blank"  href="https://docs.docker.com/engine/reference/commandline/events/">docs.docker.com/engine/reference/commandline/events/</a>
+* <a target="_blank"  href="https://gliderlabs.com/devlog/2015/docker-events-explained/">gliderlabs.com/devlog/2015/docker-events-explained/</a>
+
++++
+### Docker Events
 
 * containers: attach commit copy create destroy detach die exec_create exec_detach exec_start export health_status kill oom pause rename resize restart start stop top unpause update
 * images: delete import load pull push save tag untag
@@ -253,7 +256,7 @@ They can provide great insight on exactly what is happening.
 
 +++
 ### Docker Events
-Method for filtering out uninteresting events
+Method for filtering out uninteresting events using `jq`
 ```
 nohup docker events --format '{{json .}}' | jq -c -M 'select(
         (.Type!="volume" and .Actor.ID!="ucp-metrics-inventory")
@@ -270,7 +273,7 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 
 * Identifying and filtering out what is not needed is useful at the start, risk of eventual license exhaustion and cost increases later if you do not
 * How will long term data storage be managed
-* Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message
+* Developers must recognize the value and provide log entries that are complete and useful rather than numerous little messages that could have been contained in a single message, this is complicated by a microservices environment
 * Useful to be able to query for what’s being logged that wasn’t before
 
 +++
