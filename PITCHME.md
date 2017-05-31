@@ -11,9 +11,9 @@
 * The world of containers
 * Challenges presented by containers
 * Log aggregation systems
-* Approaches for managing log data
+* Approaches for managing logs
 * Container environments
-* Architectures for managing log data
+* Architectures for managing logs
 * Lessons learned
 
 ---
@@ -58,18 +58,12 @@
 
 Basic components of a container system
 ![Image](assets/docker-logging-nonclustered-bare.jpg)
-+++
-### Challenges presented by containers
-What talks to what
-![Image](assets/docker-logging-nonclustered-connections.jpg)
+
 +++
 ### Challenges presented by containers
 Clusters complicate things
 ![Image](assets/docker-logging-clustered-bare.jpg)
-+++
-### Challenges presented by containers
-Numerous connections and points of interest
-![Image](assets/docker-logging-clustered-connections.jpg)
+
 +++
 ### Challenges presented by containers
 Everything combined
@@ -176,7 +170,7 @@ Methods for collecting information from
   * Application container logs
 
 ---
-### Approaches for managing log data
+### Approaches for managing logs
 
 * Integrating with an existing log aggregation system (probably not greenfield)
 * Logging gateways (Fluentd) are useful for filtering data before sending to ingestion
@@ -184,7 +178,7 @@ Methods for collecting information from
 * Cost of aggregation systems (capacity, storage, long term data maintenance)
 
 +++
-### Approaches for managing log data
+### Approaches for managing logs
 
 * Intelligent log aggregation systems that can support analytics are useful for providing more than just awareness
 * Developers need to be cognizant of the value of logging
@@ -192,27 +186,41 @@ Methods for collecting information from
 * Need for dashboards prepared in advance by developers
 
 +++
-### Approaches for managing log data
+### Approaches for managing logs
 
 * Risky to be implemented as a part of the system such as being containers in the cluster because the cluster or components may fail causing the logging system to fail
 * Having them standalone may be the safest but involves more cost
 * Including tags/labels indicating service on containers can help the aggregation system classify what is received
 
 +++
-### Approaches for managing log data
+### Approaches for managing logs
 
 * Aggregation system ingestion points can help classify and group incoming data
 * Queueing system for sending entries to avoid blocking senders
 
 +++
-### Approaches for managing log and data
+### Approaches for managing logs
 
 * Forwarding to log aggregator might break local log output such as in OpenShift HAProxy syslog port, adding sidecar support for an rsyslog handler might alleviate this
 * Enriching container log data at the engine level using tags (https://docs.docker.com/engine/admin/logging/log_tags/) can be very helpful to the aggregation system
 * Note that using a logging driver might prevent using ‘docker logs container’ from working
 
 ---
-### Architectures for managing log data
+### Architectures for managing logs
+
+Send it all to the aggregator
+
+![Image](assets/docker-logging-nonclustered-connections.jpg)
+
++++
+### Architectures for managing logs
+
+Clustered means numerous connections
+
+![Image](assets/docker-logging-clustered-connections.jpg)
+
++++
+### Architectures for managing logs
 
 Logging gateway per node can reduce paths to aggregator
 
@@ -223,6 +231,9 @@ Logging gateway per node can reduce paths to aggregator
 
 Events list the lifecycle of the following resources.
 They can provide great insight on exactly what is happening.
+
+<a target="_blank"  href="https://docs.docker.com/engine/reference/commandline/events/">docs.docker.com/engine/reference/commandline/events/</a>
+<a target="_blank"  href="https://gliderlabs.com/devlog/2015/docker-events-explained/">gliderlabs.com/devlog/2015/docker-events-explained/</a>
 
 * containers: attach commit copy create destroy detach die exec_create exec_detach exec_start export health_status kill oom pause rename resize restart start stop top unpause update
 * images: delete import load pull push save tag untag
