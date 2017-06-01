@@ -322,7 +322,5 @@ On Ubuntu
 
 * Create file /etc/rsyslog.d/60-dockerd.conf
 * Insert the following with ip being the Splunk server private IP that is accessible
-
-```if $programname == 'dockerd' then @@ip:8514```
-
+* `if $programname == 'dockerd' then @@ip:8514`
 * sudo systemctl restart rsyslog
