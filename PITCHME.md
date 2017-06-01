@@ -312,6 +312,7 @@ Splunk server
 Configure rsyslog (Ubuntu 16.04) to send to Splunk (AWS)
 
 The docker engine log entries should be accessible via syslog.
+
 `rsyslog` can be used to forward only the `dockerd` entries to Splunk.
 
 +++
