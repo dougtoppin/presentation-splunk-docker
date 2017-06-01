@@ -300,8 +300,6 @@ nohup docker events --format '{{json .}}' | jq -c -M 'select(
 ### How To
 Configure rsyslog (Ubuntu 16.04) to send to Splunk (AWS)
 
-Ensure that the Splunk instance port 8514 is accessible to the Ubuntu server
-
 Splunk server
 * Settings
 * Data inputs = TCP
@@ -309,6 +307,12 @@ Splunk server
 * Port = 8514
 * Source type - Operating System = syslog
 * Submit
++++
+### How To
+Configure rsyslog (Ubuntu 16.04) to send to Splunk (AWS)
+
+The docker engine log entries should be accessible via syslog.
+`rsyslog` can be used to forward only the `dockerd` entries to Splunk.
 
 +++
 ### How To
